@@ -176,6 +176,10 @@ public class PenguinView extends View implements OnSharedPreferenceChangeListene
 		y = y + vy;
 	}
 
+	
+	// using the preferences
+	
+	
 	private void drawPenguin(Canvas canvas) {
 		mPaint.setColor(0x80ffffff); // White
 		mPaint.setStyle(Style.FILL_AND_STROKE);
@@ -191,6 +195,19 @@ public class PenguinView extends View implements OnSharedPreferenceChangeListene
 		canvas.drawCircle(mPHwidth, mPHheight, mPHheight, mPaint);
 		canvas.rotate(angle, mPHwidth, mPHheight);
 
+		
+		// here's where we use the preferences
+		// we use the PreferenceManager to the the preference values
+		// defaultSharedPreferences is not specific to a particular context or activity,
+		//   this is for the entire app
+		// All we need to do is pass in a context. 
+		// We're inside a view right now and a view has a getContext(). 
+		// we know that getContext() points back to the main activity. 
+		
+		
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext()); 
+		String name = prefs.getString("name", "default: no name set");
+		canvas.drawText(name,  100,  100, mTextPaint);
 		canvas.drawText(mPenguinName, 100, 100, mTextPaint);
 		canvas.drawBitmap(mPenguin, 0, 0, mPaint);
 	}

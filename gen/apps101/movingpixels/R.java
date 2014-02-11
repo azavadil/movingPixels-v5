@@ -69,6 +69,7 @@ public final class R {
         public static final int AppTheme=0x7f070001;
     }
     public static final class xml {
-        public static final int penguin_prefs=0x7f040000;
+        public static final int my_penguin_prefs=0x7f040000;
+        public static final int penguin_prefs=0x7f040001;
     }
 }
