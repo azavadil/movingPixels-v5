@@ -70,6 +70,10 @@ public class PenguinView extends View implements OnSharedPreferenceChangeListene
 
 	}
 	
+	// if we want to be notified when an option changes we can register a callback
+	// registered with the preference manager our penguin view
+	// 
+	
 	@Override
 	public void onSharedPreferenceChanged(SharedPreferences p, String key) {
 		// Simple but inefficient: 
@@ -83,8 +87,12 @@ public class PenguinView extends View implements OnSharedPreferenceChangeListene
 				.getDefaultSharedPreferences(getContext());
 		// If we are going to cache the name and gravity
 		// Then we better find out when they are changed
+		// Instead of reading penguin name and gravity in init
+		// we register with the preference manager our penguin view
 		mPrefs.registerOnSharedPreferenceChangeListener(this);
 		
+		// we directly call our own code
+		// every time a key is read and read everything again
 		onSharedPreferenceChanged(null, null);// Use the code above to read the preferences
 
 		Bitmap original = BitmapFactory.decodeResource(getResources(),
@@ -205,9 +213,7 @@ public class PenguinView extends View implements OnSharedPreferenceChangeListene
 		// we know that getContext() points back to the main activity. 
 		
 		
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext()); 
-		String name = prefs.getString("name", "default: no name set");
-		canvas.drawText(name,  100,  100, mTextPaint);
+		
 		canvas.drawText(mPenguinName, 100, 100, mTextPaint);
 		canvas.drawBitmap(mPenguin, 0, 0, mPaint);
 	}

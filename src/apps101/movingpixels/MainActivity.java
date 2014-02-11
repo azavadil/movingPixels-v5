@@ -46,6 +46,19 @@ public class MainActivity extends Activity {
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
+	
+	// we have a settings activity. The user cannot start the settings activity 
+	// from the launcher window. The settings activity is started from an intent
+	// 
+	// This allows the app to handle the user clicking one of the items from 
+	// the action bar. 
+	// 
+	// there a little code that says if the user clicked on action settins
+	// then start an intent which will start the settings activity. 
+	// 
+	// return true to say we've handle the action item
+	// 
+	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		int id = item.getItemId();
